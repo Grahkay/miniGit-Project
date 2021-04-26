@@ -57,7 +57,7 @@ void miniGit::CommitChange()
     
 }
 
-int miniGit::counter(int commitNumber)//probably needs to be passed by reference
+int miniGit::counter(int &commitNumber)
 {
     commitNumber++;
     return commitNumber;
