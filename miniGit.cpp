@@ -18,11 +18,11 @@ bool miniGit::search(singlyNode* head, string file)
 
 void miniGit::AddRepostitory(string repname)
 {
-    int *commitNumber = 0;
+    int commitNumber = 0;
 }
 
 void miniGit::RemoveRepostitory(string repname)
-{
+{//delete repository and all files in it
 }
 
 void miniGit::AddFile(string filename)
