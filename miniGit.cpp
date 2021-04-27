@@ -2,12 +2,12 @@
 #include <iostream>
 using namespace std;
 
-bool miniGit::search(singlyNode* head, string file)
+bool miniGit::search(doublyNode *search, string file)
 {
-    singlyNode* curr = head;
+    singlyNode* curr = search->head;
     while(curr != NULL)
     {
-        if(curr->key = file)
+        if(curr->fileName == file)
         {
             return true;
         }
@@ -15,6 +15,7 @@ bool miniGit::search(singlyNode* head, string file)
     }
     return false;
 }
+
 
 void miniGit::AddRepostitory(string repname)
 {
