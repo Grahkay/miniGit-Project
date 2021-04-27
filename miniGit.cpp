@@ -31,20 +31,38 @@ void miniGit::initialize()
 
 void miniGit::addFile()
 {
-    // bool unique = search(head, filename);// also doesn't search for unique fileversion maybe a seperate function for this
-    // while(unique != true)
-    // {
-    //     cout << "That name is already in the directory. Please chose a different name" << endl;
-    //     cin >> filename;
-    //     unique = search(head, filename);
-    // }
-    // if(unique == true)
-    // {
-    //     singlyNode* newnode = new Node(); // doesn't include fileversion for now
-    //     newnode->fileName = filename; 
-    //     newnode->next = prevnode->next;  
-    //     prevnode->next = newnode;
-    // }
+    cout << "Enter a file name:" << endl;
+    string fileName;
+    cin >> fileName;
+    //check whether the file exists in the current directory
+    if (curr == NULL)
+    {
+        cout << "Directory not initialized." << endl;
+        addFile();
+    }
+    //search SLL to see if file has been added
+    bool exists = false;
+    singlyNode *search = curr->head;
+    while (search != NULL)
+    {
+        if (search->fileName == fileName)
+        {
+            exists = true;
+            break;
+        }
+    }
+    if (exists == false)
+    {
+        singlyNode *addFile = new singlyNode;
+        addFile->fileName = fileName;
+        addFile->version = 0;
+        addFile->next = NULL;
+    }
+    else if (exists == true)
+    {
+        cout << "File already exists" << endl;
+        return;
+    }
 }
 
 
