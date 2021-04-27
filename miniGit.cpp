@@ -51,7 +51,7 @@ void miniGit::AddFile(string filename, string fileVersion)
     bool unique = search(head, filename);// also doesn't search for unique fileversion maybe a seperate function for this
     while(unique != true)
     {
-        cout << "That name is already in the directory. Please chose a different name" << endl;
+        cout << "That name is already in the directory. Please choose a different name" << endl;
         cin >> filename;
         unique = search(head, filename);
     }
@@ -59,8 +59,8 @@ void miniGit::AddFile(string filename, string fileVersion)
     {
         singlyNode* newnode = new Node(); // doesn't include fileversion for now
         newnode->fileName = filename; 
-        newnode->next = prevnode->next;  
-        prevnode->next = newnode;
+        newnode->next = previous->next;  
+        previous->next = newnode;
     }
 }
 
