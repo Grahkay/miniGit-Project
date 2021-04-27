@@ -45,27 +45,24 @@ void miniGit::AddFile(string filename, string file version)
     }
 }
 
-void miniGit::RemoveFile(singlyNode* node, string filename)
+void miniGit::AddFile(string filename, string fileVersion)
 {
-    singlyNode* prev;
-    bool found = search(*head, filename);
-    
-    if(found == true)
+    bool unique = search(head, filename);// also doesn't search for unique fileversion maybe a seperate function for this
+    while(unique != true)
     {
-        while (node->next != NULL)
-        {
-            node->data = node->next->fileName;//check if fileName is that right thing to put
-            prev = node;
-            node = node->next;
-        }
-        prev->next = NULL;
-        cout << "File Deleted." << endl;
+        cout << "That name is already in the directory. Please chose a different name" << endl;
+        cin >> filename;
+        unique = search(head, filename);
     }
-    else
+    if(unique == true)
     {
-        cout << "File not found in current directory." << endl;
+        singlyNode* newnode = new Node(); // doesn't include fileversion for now
+        newnode->fileName = filename; 
+        newnode->next = prevnode->next;  
+        prevnode->next = newnode;
     }
 }
+
 
 void miniGit::CommitChange()
 {
