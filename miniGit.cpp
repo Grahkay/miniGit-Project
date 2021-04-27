@@ -68,8 +68,6 @@ void miniGit::addFile()
 
 void miniGit::removeFile(string fileName)
 {
-    // ask user for filename
-
     // make sure the system is initialized
     if (dHead == nullptr)
     {
@@ -125,7 +123,7 @@ void miniGit::removeFile(string fileName)
 
 void miniGit::commitChange()
 {
-
+    
 }
 
 int miniGit::counter()
