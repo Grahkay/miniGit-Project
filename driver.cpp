@@ -26,6 +26,7 @@ void Checkout()
     cin >> input;
     //if(valid commit)
         //overwrite files by files in directory
+    //doesn't have a function in .cpp and .hpp yet
 }
 
 void Commit()
