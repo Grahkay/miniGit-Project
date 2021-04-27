@@ -9,9 +9,9 @@ void PrintMenu()
 {
     //initialize, add, remove, commit, checkout, quit
     cout << "Menu options" << endl;
-    cout << "1 - Initialize" << endl;
-    cout << "2 - Add" << endl;
-    cout << "3 - Remove" << endl;
+    cout << "1 - Initialize repository" << endl;
+    cout << "2 - Add file" << endl;
+    cout << "3 - Remove file" << endl;
     cout << "4 - Commit" << endl;
     cout << "5 - Checkout" << endl;
     cout << "6 - Leave the program" << endl;
