@@ -19,15 +19,30 @@ bool miniGit::search(singlyNode* head, string file)
 void miniGit::AddRepostitory(string repname)
 {
     int commitNumber = 0;
+    //add something else i believe
 }
 
 void miniGit::RemoveRepostitory(string repname)
-{//delete repository and all files in it
+{
+    //delete repository and all files in it
 }
 
-void miniGit::AddFile(string filename)
+void miniGit::AddFile(string filename, string file version)
 {
-    
+    bool unique = search(*node, filename);// also doesn't search for unique fileversion maybe a seperate function for this
+    while(unidue != true)
+    {
+        cout << "That name is already in the directory. Please chose a different name" << endl;
+        cin >> fileName;
+        unique = search(*node, filename);
+    }
+    if(unique == true)
+    {
+        singlyNode* newnode = new Node(); // doesn't include fileversion for now
+        newnode->filename = newfilename; 
+        newnode->next = prevnode->next;  
+        prevnode->next = newnode;
+    }
 }
 
 void miniGit::RemoveFile(singlyNode* node, string filename)
@@ -54,6 +69,7 @@ void miniGit::RemoveFile(singlyNode* node, string filename)
 
 void miniGit::CommitChange()
 {
+    search(*node, filename);
     
 }
 
