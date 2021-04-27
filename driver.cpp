@@ -22,8 +22,6 @@ void PrintMenu()
 int main()
 {
     int userInput;
-    string changeMind;
-    
     
     cout << "Welcome to miniGit! We recommend you create a repository first. Please enter your selction below." << endl;
     PrintMenu();
