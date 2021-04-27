@@ -12,8 +12,8 @@ void PrintMenu()
     cout << "1 - Initialize repository" << endl;
     cout << "2 - Add file" << endl;
     cout << "3 - Remove file" << endl;
-    cout << "4 - Commit" << endl;
-    cout << "5 - Checkout" << endl;
+    cout << "4 - Commit changes of a file" << endl;
+    cout << "5 - Checkout previous versions of a file" << endl;
     cout << "6 - Leave the program" << endl;
     cout << endl;
     cout << "Enter your selection: " << endl;
@@ -25,7 +25,7 @@ int main()
     string filename;
     int choice;
     
-    cout << "Welcome to miniGit! We recommend you create a repository first. Please enter your selction below." << endl;
+    cout << "Welcome to miniGit! We recommend you initialize a repository first. Please enter your selction below." << endl;
     PrintMenu();
     cin >> userInput;
     miniGit a;
