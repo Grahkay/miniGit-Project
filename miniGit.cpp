@@ -19,7 +19,14 @@ bool miniGit::search()
 
 void miniGit::initialize()
 {
-
+    //need to figure out filesystem stuff
+    //creates a DLL and initializes variables
+    counter = 0;
+    dHead->commitNumber = counter;
+    counter++;
+    dHead->head = NULL;
+    dHead->previous = NULL;
+    dHead->next = NULL;
 }
 
 void miniGit::addFile()
