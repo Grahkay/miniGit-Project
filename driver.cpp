@@ -22,6 +22,8 @@ void PrintMenu()
 int main()
 {
     int userInput;
+    string filename;
+    int choice;
     
     cout << "Welcome to miniGit! We recommend you create a repository first. Please enter your selction below." << endl;
     PrintMenu();
@@ -34,18 +36,43 @@ int main()
         {
             case 1:
                 a.initialize();
+                PrintMenu();
+                cin >> userInput;
             case 2:
-                a.addFile();
+                cout << "Enter file name to add: " << endl;
+                cin >> filename;
+                a.addFile(filename);
+                PrintMenu();
+                cin >> userInput;
             case 3: 
-                a.removeFile();
+                cout << "Enter file name to remove: " << endl;
+                cin >> filename;
+                a.removeFile(filename);
+                PrintMenu();
+                cin >> userInput;
             case 4:
                 a.commitChange();
+                PrintMenu();
+                cin >> userInput;
             case 5:
-                a.checkout();
+                cout << "You will lose changes that you have not commited. Continue?\n 1 - Yes\n";
+                cin >> choice;
+                if(choice == 1)
+                {
+                    a.checkout();
+                }
+                else
+                {
+                    break;
+                }
+                PrintMenu();
+                cin >> userInput;
             case 6:
                 break;
             default:
                 cout << "Invalid option. Please select a valid option." << endl;
+                PrintMenu();
+                cin >> userInput;
         }
     }
     //delete and clear everything
