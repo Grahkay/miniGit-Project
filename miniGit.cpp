@@ -17,10 +17,14 @@ bool miniGit::search(doublyNode *search, string file)
 }
 
 
-void miniGit::AddRepostitory(string repname)
+void miniGit::AddRepository(string repName)
 {
-    int commitNumber = 0;
+    //int commitNumber = 0;
     //add something else i believe
+    doublyNode* theDoubleList;
+    theDoubleList->commitNumber = 0;
+
+    return;
 }
 
 void miniGit::RemoveRepostitory(string repname)
