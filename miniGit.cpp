@@ -48,26 +48,61 @@ void miniGit::addFile()
 }
 
 
-void miniGit::removeFile()
+void miniGit::removeFile(string fileName)
 {
-    // singlyNode* prev;
-    // bool found = search(*head, filename);
-    
-    // if(found == true)
-    // {
-    //     while (node->next != NULL)
-    //     {
-    //         node->data = node->next->fileName;//check if fileName is that right thing to put
-    //         prev = node;
-    //         node = node->next;
-    //     }
-    //     prev->next = NULL;
-    //     cout << "File Deleted." << endl;
-    // }
-    // else
-    // {
-    //     cout << "File not found in current directory." << endl;
-    // }
+    // ask user for filename
+
+    // make sure the system is initialized
+    if (dHead == nullptr)
+    {
+        cerr << endl << "miniGit not initialized" << endl;
+        return;
+    }
+
+    // checking for empty commit list
+    if (dHhead == nullptr)
+    {
+        cerr << endl << "ERROR: Cannot remove file - no files have been added to commit list" << endl;
+        return;
+    }
+
+    fileNode* currFile = nullptr;
+    fileNode* nextFile = head;
+
+    while (nextFile != nullptr)
+    {
+        if (nextFile->fileName == fileName)
+        {
+
+            if (nextFile == head)
+            {
+                //if the head is to be deleted
+                head = nextFile->next;
+                delete nextFile;
+                nextFile = nullptr;
+            }
+            // file to be deleted is somewhere in the middle or at the end
+            else
+            {
+                currFile->next = nextFile->next;
+                delete nextFile;
+                nextFile = nullptr;
+            }
+
+            cout << endl << "File: " << fileName << " was deleted." << endl;
+            return;
+        }
+        else
+        {
+            currFile = nextFile;
+            nextFile = nextFile->next;
+        }
+        
+    }
+
+    // here we can assume that the user has entered an invalid name
+    cerr << endl << "ERROR: Please enter an existing file name to remove" << endl;
+    return;
 }
 
 void miniGit::commitChange()
