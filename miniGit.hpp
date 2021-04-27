@@ -27,10 +27,10 @@ class miniGit{
         bool search(singlyNode*, string);
         void AddRepoitory(string);
         void RemoveRpository(string);//probally need to call memory, same as addrepository
-        void AddFile(string);// call memory? from SLL
+        void AddFile(string, string);// call memory? from SLL
         void RemoveFile(string);
         void CommitChange();// def call memory
-        int counter(int);
+        int counter(int&);
 };
 
 #endif
