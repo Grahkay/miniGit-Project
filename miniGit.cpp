@@ -1,82 +1,87 @@
-#include "miniGit"
+#include "miniGit.hpp"
 #include <iostream>
+#include <filesystem>
 using namespace std;
 
-bool miniGit::search(doublyNode *search, string file)
+bool miniGit::search()
 {
-    singlyNode* curr = search->head;
-    while(curr != NULL)
-    {
-        if(curr->fileName == file)
-        {
-            return true;
-        }
-        curr = curr->next;
-    }
+    // singlyNode* curr = search->head;
+    // while(curr != NULL)
+    // {
+    //     if(curr->fileName == file)
+    //     {
+    //         return true;
+    //     }
+    //     curr = curr->next;
+    // }
     return false;
 }
 
-
-void miniGit::AddRepository(string repName)
+void miniGit::initialize()
 {
-    //int commitNumber = 0;
-    //add something else i believe
-    doublyNode* theDoubleList;
-    theDoubleList->commitNumber = 0;
 
-    return;
 }
 
-void miniGit::RemoveRepostitory(string repname)
+void miniGit::addFile()
 {
-    //delete repository and all files in it
-}
-
-void miniGit::AddFile(string filename, string file version)
-{
-    bool unique = search(*node, filename);// also doesn't search for unique fileversion maybe a seperate function for this
-    while(unidue != true)
-    {
-        cout << "That name is already in the directory. Please chose a different name" << endl;
-        cin >> fileName;
-        unique = search(*node, filename);
-    }
-    if(unique == true)
-    {
-        singlyNode* newnode = new Node(); // doesn't include fileversion for now
-        newnode->filename = newfilename; 
-        newnode->next = prevnode->next;  
-        prevnode->next = newnode;
-    }
-}
-
-void miniGit::AddFile(string filename, string fileVersion)
-{
-    bool unique = search(head, filename);// also doesn't search for unique fileversion maybe a seperate function for this
-    while(unique != true)
-    {
-        cout << "That name is already in the directory. Please choose a different name" << endl;
-        cin >> filename;
-        unique = search(head, filename);
-    }
-    if(unique == true)
-    {
-        singlyNode* newnode = new Node(); // doesn't include fileversion for now
-        newnode->fileName = filename; 
-        newnode->next = previous->next;  
-        previous->next = newnode;
-    }
+    // bool unique = search(head, filename);// also doesn't search for unique fileversion maybe a seperate function for this
+    // while(unique != true)
+    // {
+    //     cout << "That name is already in the directory. Please chose a different name" << endl;
+    //     cin >> filename;
+    //     unique = search(head, filename);
+    // }
+    // if(unique == true)
+    // {
+    //     singlyNode* newnode = new Node(); // doesn't include fileversion for now
+    //     newnode->fileName = filename; 
+    //     newnode->next = prevnode->next;  
+    //     prevnode->next = newnode;
+    // }
 }
 
 
-void miniGit::CommitChange()
+void miniGit::removeFile()
 {
-    search(*node, filename);
+    // singlyNode* prev;
+    // bool found = search(*head, filename);
     
+    // if(found == true)
+    // {
+    //     while (node->next != NULL)
+    //     {
+    //         node->data = node->next->fileName;//check if fileName is that right thing to put
+    //         prev = node;
+    //         node = node->next;
+    //     }
+    //     prev->next = NULL;
+    //     cout << "File Deleted." << endl;
+    // }
+    // else
+    // {
+    //     cout << "File not found in current directory." << endl;
+    // }
 }
 
-int miniGit::counter(int &commitNumber)
+void miniGit::commitChange()
 {
-    commitNumber++;
-    return commitNumber;
+
+}
+
+int miniGit::counter()
+{
+    // commitNumber++;
+    // return commitNumber;
+    return 0;
+}
+
+void miniGit::checkout()
+{
+    // int input;
+
+    // cout << "Enter commit number: " << endl;
+    // cin >> input;
+    // //if(valid commit)
+    //     //overwrite files by files in directory
+    // //doesn't have a function in .cpp and .hpp yet
 }
