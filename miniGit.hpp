@@ -7,30 +7,37 @@
 #include <sstream>
 using namespace std;
 
-struct doublyNode{
+struct singlyNode
+{
+    string fileName;
+    string fileVersion;
+    singlyNode *next;
+    int version;
+};
+
+struct doublyNode
+{
     int commitNumber;
-    singlyNode * head;
+    singlyNode *head;
     doublyNode * previous;
     doublyNode * next;
 };
 
-struct singlyNode{
-    string fileName;
-    string fileVersion;
-    singlyNode * next;
-};
-
-class miniGit{
+class miniGit
+{
     private:
+        doublyNode *dHead;
+        doublyNode *dTail;
 
     public:
-        bool search(singlyNode*, string);
-        void AddRepoitory(string);
-        void RemoveRpository(string);//probally need to call memory, same as addrepository
-        void AddFile(string, string);// call memory? from SLL
-        void RemoveFile(string);
-        void CommitChange();// def call memory
-        int counter(int&);
+        bool search();
+        void initialize();
+        void addFile();// call memory? from SLL
+        void removeFile();
+        void commitChange();// def call memory
+        void copy();
+        int counter();
+        void checkout();
 };
 
 #endif
