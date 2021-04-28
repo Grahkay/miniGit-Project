@@ -30,6 +30,8 @@ class miniGit
         doublyNode *dTail;
 
     public:
+        minigit();
+        ~minigit();
         bool search();
         void initialize();
         void addFile();// call memory? from SLL
