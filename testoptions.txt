@@ -1,5 +1,17 @@
 TEST 1
+Inputs:
 
-TEST 2
+Y (yes to intialize repository)
+1 (adds file)
+testfile.txt (file name)
+1 (adds file)
+testfile.txt (file name, invalid)
+testfile.cpp (new file name)
+3
+testfile00.txt
+2
+testfile.cpp
+4
+00
+5
 
-TEST 3
