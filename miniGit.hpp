@@ -28,6 +28,7 @@ class miniGit
     private:
         doublyNode *dHead;
         doublyNode *dTail;
+        doublyNode *currcommit;
 
     public:
         minigit();
