@@ -50,16 +50,12 @@ int main()
     {
         switch(userInput)
         {
-            case 1:
-                cout << "Enter file name to add: " << endl;
-                cin >> filename;
-                a.addFile(filename);
+            case 1: 
+                a.addFile();
                 PrintMenu();
                 cin >> userInput;
             case 2:
-                cout << "Enter file name to remove: " << endl;
-                cin >> filename;
-                a.removeFile(filename);
+                a.removeFile();
                 PrintMenu();
                 cin >> userInput;
             case 3: 
