@@ -28,18 +28,15 @@ class miniGit
     private:
         doublyNode *dHead;
         doublyNode *dTail;
-        doublyNode *currcommit;
+        doublyNode *curr;
+        int counter;
 
     public:
-        minigit();
-        ~minigit();
-        bool search();
         void initialize();
-        void addFile();// call memory? from SLL
+        void addFile();
         void removeFile();
-        void commitChange();// def call memory
+        void commitChange();
         void copy();
-        int counter();
         void checkout();
 };
 
