@@ -1,64 +1,13 @@
 #include "miniGit.hpp"
 #include <iostream>
 #include <filesystem>
-using namespace std;
+#include <fstream>
+//namespace fs = std::filesystem;
 
-miniGit::minigit()//constructor
-{
-    fs::remove_all(".minigit");
-}
-
-miniGit::~minigit()//destrcutor
-{
-    fs::remove_all(".minigit");
-    doublyNode *curr = dhead;
-    doublyNode *next = NULL;
-    doublyNode *scurr = NULL;
-    doublyNode *snext = NULL;
-    
-    while(curr != NULL)
-    {
-        while(scurr != NULL)
-        {
-            snext = scurr->next;
-            delete scurr;
-            scurr = snext;
-        }
-        next = curr->next;
-        delete curr;
-        curr = next;
-    }
-    if(currcommit != NULL)
-    {
-        scurr = currcommit->head;
-        while(scurr != NULL)
-        {
-            snext = scurr->next;
-            delete scurr;
-            scurr = snext;
-        }
-        delete currcommit;
-        currcommit = NULL;
-    }
-}
-
-bool miniGit::search()
-{
-    // singlyNode* curr = search->head;
-    // while(curr != NULL)
-    // {
-    //     if(curr->fileName == file)
-    //     {
-    //         return true;
-    //     }
-    //     curr = curr->next;
-    // }
-    return false;
-}
 
 void miniGit::initialize()
 {
-    //need to figure out filesystem stuff
+    //fs::create_directory(".miniGit");
     //creates a DLL and initializes variables
     counter = 0;
     dHead->commitNumber = counter;
@@ -77,8 +26,10 @@ void miniGit::addFile()
     if (curr == NULL)
     {
         cout << "Directory not initialized." << endl;
-        addFile();
+        return;
     }
+
+
     //search SLL to see if file has been added
     bool exists = false;
     singlyNode *search = curr->head;
@@ -90,13 +41,34 @@ void miniGit::addFile()
             break;
         }
     }
+    //if file does not exist
     if (exists == false)
     {
+        //create a new SLL Node
         singlyNode *addFile = new singlyNode;
         addFile->fileName = fileName;
+        addFile->fileVersion = fileName + "_00";
         addFile->version = 0;
         addFile->next = NULL;
+
+        //adds the node to the correct spot in the SLL
+        if (curr->head == NULL)
+        {
+            curr->head = addFile;
+        }
+        else
+        {
+            singlyNode *addHere = curr->head;
+            while (addHere->next != NULL)
+            {
+                addHere = addHere->next;
+            }
+            addHere->next = addFile;
+            cout << "File added." << endl;
+            return;
+        }
     }
+    //file already exists
     else if (exists == true)
     {
         cout << "File already exists" << endl;
@@ -105,80 +77,134 @@ void miniGit::addFile()
 }
 
 
-void miniGit::removeFile(string fileName)
+void miniGit::removeFile()
 {
-    // make sure the system is initialized
-    if (dHead == nullptr)
+    //prompt user to enter a file name
+    cout << "Enter a file name:" << endl;
+    string fileName;
+    cin >> fileName;
+
+    //make sure there are files to check
+    if(curr == NULL)
     {
-        cerr << endl << "miniGit not initialized" << endl;
+        cout << "No files in the repository" << endl;
         return;
     }
 
-    // checking for empty commit list
-    if (dHhead == nullptr)
+    singlyNode *search = new singlyNode;
+    search = curr->head;
+    //if the node to be deleted is the head
+    if (search->fileName == fileName)
     {
-        cerr << endl << "ERROR: Cannot remove file - no files have been added to commit list" << endl;
+        search = curr->head->next;
+        delete curr->head;
+        curr->head = search;
+        cout << "File deleted." << endl;
         return;
     }
-
-    fileNode* currFile = nullptr;
-    fileNode* nextFile = head;
-
-    while (nextFile != nullptr)
+    else
     {
-        if (nextFile->fileName == fileName)
+        while (search->fileName != fileName && search->next != NULL)
         {
-
-            if (nextFile == head)
-            {
-                //if the head is to be deleted
-                head = nextFile->next;
-                delete nextFile;
-                nextFile = nullptr;
-            }
-            // file to be deleted is somewhere in the middle or at the end
-            else
-            {
-                currFile->next = nextFile->next;
-                delete nextFile;
-                nextFile = nullptr;
-            }
-
-            cout << endl << "File: " << fileName << " was deleted." << endl;
+            search = search->next;
+        }
+        //reached the end of the list and haven't found the file
+        if (search->fileName == fileName)
+        {
+            singlyNode *temp = search;
+            temp->next = search->next;
+            delete search;
+            cout << "File deleted." << endl;
             return;
         }
-        else
+        else if (search->fileName != fileName && search->next == NULL)
         {
-            currFile = nextFile;
-            nextFile = nextFile->next;
+            cout << "File not found" << endl;
+            return;
         }
-        
+
     }
 
-    // here we can assume that the user has entered an invalid name
-    cerr << endl << "ERROR: Please enter an existing file name to remove" << endl;
+    cout << "Check the code you shouldn't get here." << endl;
     return;
 }
 
 void miniGit::commitChange()
 {
-    
-}
+    if (curr == NULL)
+    {
+        cout << "Empty directory" << endl;
+        return;
+    }
+    //traverse SLL
+    singlyNode *traverse = curr->head;
+    while (traverse != NULL)
+    {
 
-int miniGit::counter()
-{
-    // commitNumber++;
-    // return commitNumber;
-    return 0;
+    }
+
+    //create a new node for the DLL
+    doublyNode *newNode = new doublyNode;
+    newNode->commitNumber = curr->commitNumber +1;
+    newNode->previous = curr;
+    newNode->next = NULL;
+    newNode->head = NULL;
+    counter++;
+
+    //new node becomes the next node
+    curr->next = newNode;
+
+    //copy all the files to the new commit
+    singlyNode *copy = curr->head;
+    singlyNode *newSLL = newNode->head;
+    while (copy != NULL)
+    {
+        
+        //copyFile->fileName = curr;
+    }
 }
 
 void miniGit::checkout()
 {
-    // int input;
+    cout << "Warning: you will lose local changes if you checkout without making a commit with your current changes." << endl;
+    cout << "Enter -1 if you do not want to checkout:" << endl;
+    cout << "Enter a commit number:" << endl;
+    int num; 
+    cin >> num; 
+    int num2 = 0;
+    //make sure the number is valid
+    if (num < 0 || num > counter)
+    {
+        cout << "Invalid commit number" << endl;
+        return;
+    }
 
-    // cout << "Enter commit number: " << endl;
-    // cin >> input;
-    // //if(valid commit)
-    //     //overwrite files by files in directory
-    // //doesn't have a function in .cpp and .hpp yet
+    //search the DLL for the node with the matching commit number;
+    doublyNode *search = dHead;
+    while (search != NULL)
+    {
+        if (search->commitNumber == num)
+        {
+            break;
+        }
+        search = search->next;
+        num2++;
+    }
+    //copy the variables from the found node to the current node
+    curr->commitNumber = num2;
+    curr->head = search->head;
+    curr->next = search->next;
+    curr->previous = search->previous;
+
+    //copy of all files in the SLL
+    singlyNode *copy = new singlyNode;
+    singlyNode *SLLsearch = search->head;
+    copy->next == NULL;
+    copy = curr->head;
+    while (SLLsearch != NULL)
+    {
+        copy = SLLsearch;
+        SLLsearch = SLLsearch->next;
+        copy = copy->next;
+    }
 }
