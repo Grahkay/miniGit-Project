@@ -3,6 +3,45 @@
 #include <filesystem>
 using namespace std;
 
+miniGit::minigit()//constructor
+{
+    fs::remove_all(".minigit");
+}
+
+miniGit::~minigit()//destrcutor
+{
+    fs::remove_all(".minigit");
+    doublyNode *curr = dhead;
+    doublyNode *next = NULL;
+    doublyNode *scurr = NULL;
+    doublyNode *snext = NULL;
+    
+    while(curr != NULL)
+    {
+        while(scurr != NULL)
+        {
+            snext = scurr->next;
+            delete scurr;
+            scurr = snext;
+        }
+        next = curr->next;
+        delete curr;
+        curr = next;
+    }
+    if(currcommit != NULL)
+    {
+        scurr = currcommit->head;
+        while(scurr != NULL)
+        {
+            snext = scurr->next;
+            delete scurr;
+            scurr = snext;
+        }
+        delete currcommit;
+        currcommit = NULL;
+    }
+}
+
 bool miniGit::search()
 {
     // singlyNode* curr = search->head;
